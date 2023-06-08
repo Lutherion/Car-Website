@@ -1,0 +1,90 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <h1>Car Details - user - {{ user }}</h1>
+    <div class="list-container">
+        <div class="list-header">
+            <div class="list-item">					
+                <div class="data-wrapper">
+                    <h2>Model</h2>
+                </div>									
+                <div class="data-wrapper">
+                    <h2>German Price</h2>
+                </div>									
+                <div class="data-wrapper">
+                    <h2>Netherlands Price</h2>
+                </div>									
+                <div class="data-wrapper">
+                    <h2>United Kingdom Price</h2>
+                </div>									
+                <div class="data-wrapper">
+                    <h2>0-100</h2>
+                </div>									
+                <div class="data-wrapper">
+                    <h2>Top Speed</h2>
+                </div>									
+                <div class="data-wrapper">
+                    <h2>Range</h2>
+                </div>									
+                <div class="data-wrapper">
+                    <h2>Efficiency</h2>
+                </div>									
+                <div class="data-wrapper">
+                    <h2>Fast Charge</h2>
+                </div>									
+                <div class="data-wrapper">
+                    <h2>Towing</h2>
+                </div>									
+                <div class="data-wrapper">
+                    <h2>Seats</h2>
+                </div>									
+            </div>
+        </div>
+        
+        <div class="list-body">
+            {% for car in cars %}
+            <div class="list-item">					
+                <div class="data-wrapper">
+                    <p>{{ car[1] }}</p>
+                </div>									
+                <div class="data-wrapper">
+                    <p>{{ car[2] }}</p>
+                </div>									
+                <div class="data-wrapper">
+                    <p>{{ car[3] }}</p>
+                </div>									
+                <div class="data-wrapper">
+                    <p>{{ car[4] }}</p>
+                </div>									
+                <div class="data-wrapper">
+                    <p>{{ car[5] }}</p>
+                </div>									
+                <div class="data-wrapper">
+                    <p>{{ car[6] }}</p>
+                </div>									
+                <div class="data-wrapper">
+                    <p>{{ car[7] }}</p>
+                </div>									
+                <div class="data-wrapper">
+                    <p>{{ car[8] }}</p>
+                </div>									
+                <div class="data-wrapper">
+                    <p>{{ car[9] }}</p>
+                </div>									
+                <div class="data-wrapper">
+                    <p>{{ car[10] }}</p>
+                </div>									
+                <div class="data-wrapper">
+                    <p>{{ car[11] }}</p>
+                </div>									
+                <div class="data-wrapper">
+                    <p>{{ car[12] }}</p>
+                </div>									
+                <div class="data-wrapper">
+                    <p>{{ car[13] }}</p>
+                </div>									
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock content %}

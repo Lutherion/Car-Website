@@ -1,0 +1,283 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <h1>Car Details</h1>
+    
+    <div class="filter-container">
+        <!-- Usage Reason -->
+        <label for="usage-select">Usage Reason:</label>
+        <select id="usage-select" onchange="selectUsageReason()">
+            <option value="">All</option>
+            <option value="work">Work</option>
+            <option value="pleasure">Pleasure</option>
+            <option value="show_off">Show Off</option>
+        </select>
+        
+        <!-- Battery Capacity -->
+        <label for="kwh-select">Battery Capacity (kWh):</label>
+        <select id="kwh-select" onchange="filterCars()">
+            <option value="">All</option>
+            <option value="0-50">0-50</option>
+            <option value="51-100">51-100</option>
+            <option value="101-150">101-150</option>
+            <!-- Add more options as needed -->
+        </select>
+        
+        <!-- Top Speed -->
+        <label for="speed-select">Top Speed (km/h):</label>
+        <select id="speed-select" onchange="filterCars()">
+            <option value="">All</option>
+            <option value="0-100">0-100</option>
+            <option value="101-150">101-150</option>
+            <option value="151-200">151-200</option>
+            <!-- Add more options as needed -->
+        </select>
+        
+        <!-- Range -->
+        <label for="range-select">Range (km):</label>
+        <select id="range-select" onchange="filterCars()">
+            <option value="">All</option>
+            <option value="0-200">0-200</option>
+            <option value="201-400">201-400</option>
+            <option value="401-600">401-600</option>
+            <!-- Add more options as needed -->
+        </select>
+        
+        <!-- Fast Charging -->
+        <label for="fastcharge-select">Fast Charging:</label>
+        <select id="fastcharge-select" onchange="filterCars()">
+            <option value="">All</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+        </select>
+        
+        <!-- Pricing -->
+        <label for="price-select">Pricing (EUR):</label>
+        <select id="price-select" onchange="filterCars()">
+            <option value="">All</option>
+            <option value="0-20000">0-20000</option>
+            <option value="20001-40000">20001-40000</option>
+            <option value="40001-60000">40001-60000</option>
+            <option value="60001-80000">60001-80000</option>
+            <!-- Add more options as needed -->
+        </select>
+        
+        <!-- Towing Capacity -->
+        <label for="towing-select">Towing Capacity (kg):</label>
+        <select id="towing-select" onchange="filterCars()">
+            <option value="">All</option>
+            <option value="0-500">0-500</option>
+            <option value="501-1000">501-1000</option>
+            <option value="1001-1500">1001-1500</option>
+            <!-- Add more options as needed -->
+        </select>
+        
+        <!-- Number of Seats -->
+        <label for="seats-select">Number of Seats:</label>
+        <select id="seats-select" onchange="filterCars()">
+            <option value="">All</option>
+            <option value="2">2</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <!-- Add more options as needed -->
+        </select>
+        
+        <!-- Car Name -->
+        <label for="name-input">Car Name:</label>
+        <input type="text" id="name-input" oninput="filterCars()">
+    </div>
+    
+    <div class="list-container">
+        <div class="list-header">
+            <div class="data-wrapper">
+                <h2>Model</h2>
+            </div>
+            <div class="data-wrapper">
+                <h2>Price (Germany)</h2>
+            </div>
+            <div class="data-wrapper">
+                <h2>Price (UK)</h2>
+            </div>
+            <div class="data-wrapper">
+                <h2>Price (Netherlands)</h2>
+            </div>
+            <div class="data-wrapper">
+                <h2>Battery Capacity (kWh)</h2>
+            </div>
+            <div class="data-wrapper">
+                <h2>Top Speed (km/h)</h2>
+            </div>
+            <div class="data-wrapper">
+                <h2>Range (km)</h2>
+            </div>
+            <div class="data-wrapper">
+                <h2>Fast Charging</h2>
+            </div>
+            <div class="data-wrapper">
+                <h2>Towing Capacity (kg)</h2>
+            </div>
+            <div class="data-wrapper">
+                <h2>Number of Seats</h2>
+            </div>
+        </div>
+        
+        <div class="list-body">
+            {% for car in cars %}
+            <div class="list-item" data-kwh="{{ car[3] }}" data-speed="{{ car[5] }}" data-range="{{ car[6] }}" data-fastcharge="{{ car[9] }}" data-price-germany="{{ car[2] }}" data-price-uk="{{ car[4] }}" data-price-netherlands="{{ car[7] }}" data-towing="{{ car[11] }}" data-seats="{{ car[12] }}" data-name="{{ car[1] }}">
+                <div class="data-wrapper">
+                    <p>{{ car[1] }}</p>
+                </div>
+                <div class="data-wrapper">
+                    <p>{{ car[2] }}</p>
+                </div>
+                <div class="data-wrapper">
+                    <p>{{ car[4] }}</p>
+                </div>
+                <div class="data-wrapper">
+                    <p>{{ car[7] }}</p>
+                </div>
+                <div class="data-wrapper">
+                    <p>{{ car[3] }}</p>
+                </div>
+                <div class="data-wrapper">
+                    <p>{{ car[5] }}</p>
+                </div>
+                <div class="data-wrapper">
+                    <p>{{ car[6] }}</p>
+                </div>
+                <div class="data-wrapper">
+                    <p>{{ car[9] }}</p>
+                </div>
+                <div class="data-wrapper">
+                    <p>{{ car[11] }}</p>
+                </div>
+                <div class="data-wrapper">
+                    <p>{{ car[12] }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <script>
+        function filterCars() {
+            var kwhSelect = document.getElementById("kwh-select");
+            var speedSelect = document.getElementById("speed-select");
+            var rangeSelect = document.getElementById("range-select");
+            var fastchargeSelect = document.getElementById("fastcharge-select");
+            var priceSelect = document.getElementById("price-select");
+            var towingSelect = document.getElementById("towing-select");
+            var seatsSelect = document.getElementById("seats-select");
+            var nameInput = document.getElementById("name-input");
+
+            var items = document.getElementsByClassName("list-item");
+
+            var selectedKwh = kwhSelect.value;
+            var selectedSpeed = speedSelect.value;
+            var selectedRange = rangeSelect.value;
+            var selectedFastCharge = fastchargeSelect.value;
+            var selectedPrice = priceSelect.value;
+            var selectedTowing = towingSelect.value;
+            var selectedSeats = seatsSelect.value;
+            var selectedName = nameInput.value.toLowerCase();
+
+            for (var i = 0; i < items.length; i++) {
+                var item = items[i];
+
+                var kwh = item.getAttribute("data-kwh");
+                var speed = item.getAttribute("data-speed");
+                var range = item.getAttribute("data-range");
+                var fastCharge = item.getAttribute("data-fastcharge");
+                var priceGermany = item.getAttribute("data-price-germany");
+                var priceUK = item.getAttribute("data-price-uk");
+                var priceNetherlands = item.getAttribute("data-price-netherlands");
+                var towing = item.getAttribute("data-towing");
+                var seats = item.getAttribute("data-seats");
+                var name = item.getAttribute("data-name").toLowerCase();
+
+                var displayItem = true;
+
+                if (selectedKwh !== "" && kwh !== selectedKwh) {
+                    displayItem = false;
+                }
+                if (selectedSpeed !== "" && speed !== selectedSpeed) {
+                    displayItem = false;
+                }
+                if (selectedRange !== "" && range !== selectedRange) {
+                    displayItem = false;
+                }
+                if (selectedFastCharge !== "" && fastCharge !== selectedFastCharge) {
+                    displayItem = false;
+                }
+                if (selectedPrice !== "" && (priceGermany !== selectedPrice && priceUK !== selectedPrice && priceNetherlands !== selectedPrice)) {
+                    displayItem = false;
+                }
+                if (selectedTowing !== "" && towing !== selectedTowing) {
+                    displayItem = false;
+                }
+                if (selectedSeats !== "" && seats !== selectedSeats) {
+                    displayItem = false;
+                }
+                if (selectedName !== "" && !name.includes(selectedName)) {
+                    displayItem = false;
+                }
+
+                if (displayItem) {
+                    item.style.display = "flex";
+                } else {
+                    item.style.display = "none";
+                }
+            }
+        }
+        
+        function selectUsageReason() {
+            var usageSelect = document.getElementById("usage-select");
+            var selectedUsage = usageSelect.value;
+            
+            var kwhSelect = document.getElementById("kwh-select");
+            var speedSelect = document.getElementById("speed-select");
+            var rangeSelect = document.getElementById("range-select");
+            var fastchargeSelect = document.getElementById("fastcharge-select");
+            var priceSelect = document.getElementById("price-select");
+            var towingSelect = document.getElementById("towing-select");
+            var seatsSelect = document.getElementById("seats-select");
+            
+            if (selectedUsage === "work") {
+                kwhSelect.value = "101-150";
+                speedSelect.value = "";
+                rangeSelect.value = "401-600";
+                fastchargeSelect.value = "";
+                priceSelect.value = "";
+                towingSelect.value = "1001-1500";
+                seatsSelect.value = "4";
+            } else if (selectedUsage === "pleasure") {
+                kwhSelect.value = "";
+                speedSelect.value = "";
+                rangeSelect.value = "";
+                fastchargeSelect.value = "Yes";
+                priceSelect.value = "20001-60000";
+                towingSelect.value = "";
+                seatsSelect.value = "";
+            } else if (selectedUsage === "show_off") {
+                kwhSelect.value = "";
+                speedSelect.value = "151-200";
+                rangeSelect.value = "";
+                fastchargeSelect.value = "";
+                priceSelect.value = "60001-80000";
+                towingSelect.value = "";
+                seatsSelect.value = "";
+            } else {
+                // All selected
+                kwhSelect.value = "";
+                speedSelect.value = "";
+                rangeSelect.value = "";
+                fastchargeSelect.value = "";
+                priceSelect.value = "";
+                towingSelect.value = "";
+                seatsSelect.value = "";
+            }
+            
+            filterCars();
+        }
+    </script>
+{% endblock content %}
