@@ -34,7 +34,9 @@ def login():
 
 @app.route('/search')
 def search():
-    return render_template('search.html')
+    cars = models.select_Cars()
+
+    return render_template('search.html', cars = cars)
 
 
 @app.route('/favourites')
@@ -48,3 +50,50 @@ def favourites():
         cars = models.select_favourites(currentUser)
 
     return render_template('favourites.html', cars = cars, user = currentUser)
+
+@app.route('/addcar', methods=('GET', 'POST'))
+def addcar():
+    if request.method == 'POST':
+        model = request.form['model']
+        german = request.form['German']
+        netherlands = request.form['Netherlands']
+        unitedKingdom = request.form['UnitedKingdom']
+        battery = request.form['Battery']
+        acceleration = request.form['Acceleration']
+        topSpeed = request.form['TopSpeed']
+        range = request.form['Range']
+        efficiency = request.form['Efficiency']
+        fastCharge = request.form['FastCharge']
+        towing = request.form['Towing']
+        seats = request.form['Seats']
+        cars = models.select_Cars()
+
+        if not model:
+            flash('model is required!')
+        elif not german:
+            flash('german is required!')
+        elif not netherlands:
+            flash('netherlands is required!')
+        elif not unitedKingdom:
+            flash('unitedKingdom is required!')
+        elif not battery:
+            flash('battery is required!')
+        elif not acceleration:
+            flash('acceleration is required!')
+        elif not topSpeed:
+            flash('topSpeed is required!')
+        elif not range:
+            flash('range is required!')
+        elif not efficiency:
+            flash('efficiency is required!')
+        elif not fastCharge:
+            flash('fastCharge is required!')
+        elif not towing:
+            flash('towing is required!')
+        elif not seats:
+            flash('seats is required!')
+        else:
+            models.add_car(cars, model, german, netherlands, unitedKingdom, battery, acceleration, topSpeed, range, efficiency, fastCharge, towing, seats)
+            return redirect(url_for('index'))
+
+    return render_template('addcar.html')

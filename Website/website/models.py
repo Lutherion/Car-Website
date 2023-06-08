@@ -1,8 +1,5 @@
-# write all your SQL queries in this file.
 from datetime import datetime
-from psycopg2 import sql
 import psycopg2
-#from website import conn
 
 db = "dbname='website' user='website' host='127.0.0.1' password = '1235'"
 conn = psycopg2.connect(db)
@@ -37,3 +34,17 @@ def select_favourites(user_id):
     cars = [row for row in cur.fetchall()]
     cur.close()
     return cars
+
+def add_car(cars, model, german, netherlands, unitedKingdom, battery, acceleration, topSpeed, range, efficiency, fastCharge, towing, seats):
+    l = len(cars)
+    cur = conn.cursor()
+    sql = f"""
+    INSERT INTO cars(cars_id, name, available_since, german_price, netherlands_price, unitedkingdom_price, battery, acceleration, top_speed, range, efficiency, fast_charge, towing, seats)
+    VALUES ({l}, '{model}', '{datetime.now().date()}', {german}, {netherlands}, {unitedKingdom}, {battery}, {acceleration}, {topSpeed}, {range}, {efficiency}, {fastCharge}, {towing}, {seats}); 
+    """
+    print(sql)
+    cur.execute(sql)
+    conn.commit()
+    cur.close()
+
+    return(1)

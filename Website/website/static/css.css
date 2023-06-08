@@ -1,65 +1,56 @@
 ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #333;
-  }
-  
-  li {
-    float: left;
-  }
-  
-  li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-  }
-  
-  li a:hover {
-    background-color: #111;
-  }
-  
-  /* Additional styles for the car details list */
-  .list-container {
-    margin-top: 20px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    overflow: hidden;
-  }
-  
-  .list-header {
-    background-color: #f5f5f5;
-    padding: 10px;
-  }
-  
-  .list-item {
-    display: flex;
-    border-bottom: 1px solid #ddd;
-  }
-  
-  .data-wrapper {
-    flex: 1;
-    padding: 10px;
-    box-sizing: border-box; /* Ensure padding is included in width */
-  }
-  
-  h1 {
-    margin: 0;
-    font-size: 18px;
-    font-weight: bold;
-  }
-  
-  h2 {
-    margin: 0;
-    font-size: 16px;
-    font-weight: bold;
-  }
-  
-  p {
-    margin: 0;
-    font-size: 14px;
-  }
-  
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: #111;
+}
+
+.list-header {
+  background-color: #f5f5f5;
+  padding: 10px;
+}
+
+.list-item {
+  display: flex;
+  border-bottom: 1px solid #ddd;
+}
+
+.data-wrapper {
+  flex: 1;
+  padding: 10px;
+  box-sizing: border-box; /* Ensure padding is included in width */
+}
+
+h1 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+h2 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+p {
+  margin: 0;
+  font-size: 14px;
+}
